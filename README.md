@@ -30,6 +30,7 @@ public function action_calendar($view = null, $year = null, $month = null, $day 
 ```
 
 Here is some very basic styling if you wish to use it
+
 ```php
 .fuel_calendar header {
 	margin: 0 0 10px;
