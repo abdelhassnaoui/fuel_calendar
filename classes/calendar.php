@@ -76,7 +76,7 @@ class Calendar {
 		//check view values
 		if($view != 'week' and $view != 'day')
 		{
-			$view = 'month'
+			$view = 'month';
 		}
 		// convert year and month to ints
 		!is_int($year) and $year = (int)$year;
