@@ -19,14 +19,13 @@ Download the package and move it into your fuel/packages/ directory
 public function action_calendar($view = null, $year = null, $month = null, $day = null)
 {
 	$config = array(
-		'view' => $view,
 		'dates_as_links' => true,
 		'navigation' => true,
 		'navigation_url' => \Config::get('base_url').'events/view/calendar/',
 		'viewpath' => 'events/content/',
 	);
 
-	$this->response->body = \Calendar::forget('calendar', $config)->build($year, $month, $day);
+	$this->response->body = \Calendar::forget('calendar', $config)->build($view, $year, $month, $day);
 }
 ```
 
