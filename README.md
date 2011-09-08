@@ -32,7 +32,6 @@ public function action_calendar($view = null, $year = null, $month = null, $day 
 
 ## Config Options
 
-```php
 'dates_as_links => (true or false) // dates that appear in the calendar will link to the day
 
 'navigation' => (true or false) // builds a navigation for easy date manipulation
@@ -40,7 +39,7 @@ public function action_calendar($view = null, $year = null, $month = null, $day 
 'navigation_url' => 'url' // the url to the current controller/method - must end wiht a '/',
 
 'viewpath' => 'path' // use this if you wish to overwrite the template that comes with the package and the file location is not located in the base view folder. If the view file is located in 'view/calendar/calendar_week.php' the path should be 'calendar/'.
-```
+
 
 ## Templating
 
