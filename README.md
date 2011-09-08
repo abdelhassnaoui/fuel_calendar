@@ -31,7 +31,7 @@ public function action_calendar($view = null, $year = null, $month = null, $day 
 
 ## Config Options
 
-'dates_as_links => (true or false) // dates that appear in the calendar will link to the day
+'dates_as_links' => (true or false) // dates that appear in the calendar will link to the day
 
 'navigation' => (true or false) // builds a navigation for easy date manipulation
 
