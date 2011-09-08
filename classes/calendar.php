@@ -58,10 +58,6 @@ class Calendar {
 			$property = '_'.$property;
 			if(property_exists('Calendar', $property))
 			{
-				if($property == '_view' and $value != 'week' and $value != 'day')
-				{
-					$value = 'month';
-				}
 				$this->$property = $value;
 			}
 		}
@@ -75,8 +71,13 @@ class Calendar {
 	 * @param int
 	 * @param array
 	 */
-	public function build($year = null, $month = null, $day = null, $data = null)
+	public function build($view = null, $year = null, $month = null, $day = null, $data = null)
 	{
+		//check view values
+		if($view != 'week' and $view != 'day')
+		{
+			$view = 'month'
+		}
 		// convert year and month to ints
 		!is_int($year) and $year = (int)$year;
 		!is_int($month) and $month = (int)$month;
@@ -102,6 +103,7 @@ class Calendar {
 		}
 		
 		// set properties
+		$this->_view = $view;
 		$this->_month = $month;
 		$this->_year = $year;
 		$this->_day_or_week = $day;
