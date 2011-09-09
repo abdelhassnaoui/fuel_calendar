@@ -18,6 +18,7 @@ Download the package and move it into your fuel/packages/ directory
 
 public function action_calendar($view = null, $year = null, $month = null, $day = null)
 {
+	//setting config
 	$config = array(
 		'dates_as_links' => true,
 		'navigation' => true,
@@ -25,69 +26,20 @@ public function action_calendar($view = null, $year = null, $month = null, $day 
 		'viewpath' => 'events/content/',
 	);
 
-	$this->response->body = \Calendar::forget('calendar', $config)->build($view, $year, $month, $day);
+	// passing data $key = date, $value = array()
+	$data = array( 
+		'12' => array( //$key = text or link - link will overwrite default 'dates_as_links' to this value
+			'text' => 'this will appear in calendar day of 12',
+			'link' => 'http://www.google.com' // #12 will now link to google
+		),
+	);
+
+	$this->response->body = \Calendar::forge('calendar', $config)->build($view, $year, $month, $day, $data);
 }
 ```
+### Note
 
-Here is some very basic styling if you wish to use it
-
-```php
-.fuel_calendar header {
-	margin: 0 0 10px;
-	padding: 8px;
-	background: #ececec;
-	border: 1px solid #a3a3a3;
-	border-radius: 6px;
-	overflow: hidden;
-	zoom: 1;
-}
-
-.fuel_calendar header h3 {
-	float: left;
-}
-
-.fuel_calendar header nav {
-	float: right;
-	border: 1px solid #a3a3a3;
-	background: #f6f6f6;
-	border-radius: 6px;
-}
-
-.fuel_calendar header nav li {
-	display: inline;
-}
-
-.fuel_calendar header nav a {
-	display: block;
-	float: left;
-	padding: 3px 5px;
-	color: #000;
-	text-decoration: none;
-	border-right: 1px solid #a3a3a3;
-}
-
-.fuel_calendar header nav li a.selected {
-	background: #A3A3A3;
-	color: white;
-	box-shadow: 1px 1px 1px #333 inset;
-	text-shadow: 1px 1px 0 #000;
-}
-
-.fuel_calendar header nav li:last-child a {
-	border-right: 0;
-}
-
-.fuel_calendar table {
-	width: 90%;
-	margin: 0px auto;
-}
-.fuel_calendar td {
-	border: 1px solid #000;
-	padding: 10px;
-	height: 100px;
-	width: 100px;
-}
-```
+If you are passing data to the calendar the data will be used for every month, not just the current month. So with with above example 'this will appear in the calendar day of 12' will be seen in every month on the 12th day. Setting this data dynamically, such as through a database, should prevent this issue if done correctly.
 
 ## Config Options
 
