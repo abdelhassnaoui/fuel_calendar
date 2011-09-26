@@ -3,9 +3,6 @@
 namespace Calendar;
 
 class Calendar {
-	
-	// instance var for multiple instances
-	protected static $_instance = array();
 
 	// config settings
 	protected $_view = 'month';
@@ -31,17 +28,9 @@ class Calendar {
 	 *
 	 * @param array
 	 */
-	public static function forge($instance = 'default', $config = array())
+	public static function forge($config = array())
 	{
-		return new static($instance, $config);
-	}
-	
-	/**
-	 * Return calendar instance
-	 */
-	public static function instance($instance)
-	{
-		return static::$_instance[$instance];
+		return new static($config);
 	}
 
 	/**
@@ -49,10 +38,8 @@ class Calendar {
 	 *
 	 * @param array
 	 */
-	public function __construct($instance, $config)
+	public function __construct($config)
 	{
-		static::$_instance[$instance] = $this;
-
 		foreach($config as $property => $value)
 		{
 			$property = '_'.$property;
